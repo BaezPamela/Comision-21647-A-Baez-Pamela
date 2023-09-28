@@ -44,13 +44,13 @@ app.get('/agregar', function (req, res) {
 app.post('/agregar', async function (req, res) {
   console.log(req.body)
   
-  const {titulo, texto}= req.body
+  const {titulo, texto,imagen}= req.body
   
   try {
     const nuevoPost= await posteoModel.create({
       titulo: titulo,
       texto: texto,
-      imagen:'https://www.shutterstock.com/shutterstock/photos/643080895/display_1500/stock-vector-image-icon-in-trendy-flat-style-isolated-on-white-background-award-symbol-for-your-web-site-design-643080895.jpg'
+      imagen:imagen,
   
     });
       
@@ -113,14 +113,14 @@ app.get('/editar/:id',async function (req, res) {
 
 app.post('/editar/:id',async function (req, res) {
   const{ id }= req.params;
-  const {titulo, texto}= req.body
+  const {titulo, texto,imagen}= req.body
   
   try{
     const postEditado= await posteoModel.update(
       { 
         titulo:titulo, 
-        texto:texto
-        
+        texto:texto,
+        imagen:imagen
       },{
         where:{ 
           id:id
